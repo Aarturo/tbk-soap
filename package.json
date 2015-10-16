@@ -1,0 +1,31 @@
+{
+  "name": "tbk-soap",
+  "version": "0.0.1",
+  "description": "Uso de Servicio Web Soap de Transbank.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aarturo/tbk-soap.git"
+  },
+  "keywords": [
+    "transbank",
+    "webpay",
+    "webpay",
+    "plus",
+    "soap",
+    "webservice"
+  ],
+  "author": "Arturo Castillo <aacg1986@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aarturo/tbk-soap/issues"
+  },
+  "homepage": "https://github.com/Aarturo/tbk-soap",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "soap": "^0.9.5"
+  }
+}
