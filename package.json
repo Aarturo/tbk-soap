@@ -2,9 +2,13 @@
   "name": "tbk-soap",
   "version": "0.0.1",
   "description": "Uso de Servicio Web Soap de Transbank.",
-  "main": "index.js",
+  "main": "lib",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "babel": "babel src --out-dir lib",
+    "eslint": "eslint src",
+    "clean": "rimraf lib",
+    "build": "npm run clean && npm run eslint && npm run babel",
+    "test": "mocha --compilers js:babel/register src/test"
   },
   "repository": {
     "type": "git",
@@ -25,7 +29,12 @@
   },
   "homepage": "https://github.com/Aarturo/tbk-soap",
   "dependencies": {
-    "babel": "^5.8.23",
     "soap": "^0.9.5"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "eslint": "^1.7.1",
+    "mocha": "^2.3.3",
+    "rimraf": "^2.4.3"
   }
 }
