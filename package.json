@@ -29,9 +29,12 @@
   },
   "homepage": "https://github.com/Aarturo/tbk-soap",
   "dependencies": {
+    "dotenv": "^2.0.0",
+    "fs": "0.0.2",
     "soap": "^0.9.5"
   },
   "devDependencies": {
+    "assert": "^1.3.0",
     "babel": "^5.8.23",
     "eslint": "^1.7.1",
     "mocha": "^2.3.3",

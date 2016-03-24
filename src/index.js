@@ -6,8 +6,11 @@ import {
 	acknowledgeTransaction
 } from "./webpayservice"
 
+import * as wsdlformats from "./utils/wsdlformats.js"
+
 export default {
 	initTransaction: initTransaction,
 	getTransactionResult: getTransactionResult,
-	acknowledgeTransaction: acknowledgeTransaction
+	acknowledgeTransaction: acknowledgeTransaction,
+	wsdlformats: wsdlformats
 }
