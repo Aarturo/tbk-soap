@@ -10,18 +10,14 @@ import config from "./config"
  * @return string XML with the result
  */
 export function initTransaction(args, callback){
-	soap.createClient(config.url, (err, client) => {
-		console.log("inicio")		
-		if (err) {
-			console.log("error: " + err)
+	soap.createClient(config.url, (err, client) => {				
+		if (err) {			
 			callback(err, null)
-		} else {
-			console.log("asegurando")			
+		} else {			
 			client.setSecurity(new soap.ClientSSLSecurity(
 				config.key,
 				config.crt
-			))
-			console.log("peticion")
+			))			
 			client.initTransaction(args, (erro, result, raw, soapHeader) => {
 				if (erro){
 					callback(erro, null)

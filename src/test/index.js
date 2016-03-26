@@ -5,6 +5,14 @@ import assert from "assert"
 import * as wp from "../index"
 
 describe("fill the objects", () => {
+	let soapResult = null
+	let error = null
+
+	before( (done) => {
+		setTimeout(function() {}, 5000)		
+		done()
+	})
+
 	it("initransaction object", (done) => {		
 		let init = wp.wsdlformats.wsInitTransactionInput
 		let details = wp.wsdlformats.wsTransactionDetail
@@ -25,14 +33,11 @@ describe("fill the objects", () => {
 						
 		wp.initTransaction(init, (err, result) => {
 			if (err) {
-				console.log("error: " + err)
-				assert.ok(false)
+				console.log("error: " + err)				
 			} else {
-				console.log("resultado" + result)
-				assert.ok(true)
+				console.log("resultado" + result)				
 			}
 		})
-
 		done()
 	})
 
