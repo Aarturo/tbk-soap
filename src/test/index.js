@@ -9,11 +9,11 @@ describe("fill the objects", () => {
 	let error = null
 
 	before( (done) => {
-		setTimeout(function() {}, 5000)		
+		setTimeout(function() {}, 5000)
 		done()
 	})
 
-	it("initransaction object", (done) => {		
+	it("initransaction object", (done) => {
 		let init = wp.wsdlformats.wsInitTransactionInput
 		let details = wp.wsdlformats.wsTransactionDetail
 		let pmdetails = wp.wsdlformats.wpmDetailInput
@@ -30,15 +30,12 @@ describe("fill the objects", () => {
 		init.returnURL = config.returnurl
 		init.finalURL = config.finalurl
 		init.transactionDetails = details
-						
+
 		wp.initTransaction(init, (err, result) => {
-			if (err) {
-				console.log("error: " + err)				
-			} else {
-				console.log("resultado" + result)				
-			}
-		})
-		done()
+			if (err) throw err;
+			console.log("resultado" + result)
+		  done()
+    })
 	})
 
 	it("getTransactionResult object", (done) => {
