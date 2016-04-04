@@ -2,50 +2,56 @@
 
 import config from "../config"
 import assert from "assert"
-import * as wp from "../index"
+import WebpayService from "../webpayservice"
+import soap from "soap"
+import fs from "fs"
 
 describe("fill the objects", () => {
 	let soapResult = null
 	let error = null
 
 	before( (done) => {
-		setTimeout(function() {}, 5000)		
-		done()
+		setTimeout(() => {
+
+		}, 10000);
+		done();
 	})
 
-	it("initransaction object", (done) => {		
-		let init = wp.wsdlformats.wsInitTransactionInput
-		let details = wp.wsdlformats.wsTransactionDetail
-		let pmdetails = wp.wsdlformats.wpmDetailInput
-		// filling objects
-		// transactionDetails
-		details.amount = 14990
-		details.commerceCode = config.commerceid
-		details.buyOrder = "123456789"
-		// initTransaction
-		init.wSTransactionType = wp.wsdlformats.NORMAL_WS
-		init.commerceId = config.commerceid
-		init.buyOrder = "123456789"
-		init.sessionId = "AwsdFGHijk"
-		init.returnURL = config.returnurl
-		init.finalURL = config.finalurl
-		init.transactionDetails = details
-						
-		wp.initTransaction(init, (err, result) => {
+	it("initransaction object", (done) => {
+		const wp = new WebpayService('initTransaction');
+		let format = wp.getWsdlFormat();		
+		filling objects
+		
+		initTransaction
+		format.wsInitTransactionInput.wSTransactionType = wp.getType('NORMAL_WS');
+		format.wsInitTransactionInput.sessionId = "1234";
+		format.wsInitTransactionInput.returnURL = config.returnurl;
+		format.wsInitTransactionInput.returnURL = "http://www.test.cl/return";
+		format.wsInitTransactionInput.finalURL = config.finalurl;
+		format.wsInitTransactionInput.finalURL = "http://www.test.cl/final";
+		format.wsInitTransactionInput.commerceId = config.commerceid;
+		format.wsInitTransactionInput.buyOrder = "123456789";				
+		transactionDetails
+		format.wsInitTransactionInput.transactionDetails.amount = 5;
+		format.wsInitTransactionInput.transactionDetails.commerceCode = config.commerceid;
+		format.wsInitTransactionInput.transactionDetails.buyOrder = "100-testing";
+				
+		wp.initTransaction(format, (err, result) => {
 			if (err) {
-				console.log("error: " + err)				
+				console.log(err);
+				console.log(result);		
 			} else {
-				console.log("resultado" + result)				
+				console.log(result);
 			}
 		})
-		done()
+		
 	})
 
 	it("getTransactionResult object", (done) => {
-		done()
+		done();
 	})
 
 	it("acknowledgeTransaction object", (done) => {
-		done()
+		done();
 	})
 })

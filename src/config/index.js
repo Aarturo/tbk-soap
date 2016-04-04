@@ -3,7 +3,7 @@
 import fs from "fs"
 
 if (fs.existsSync(__dirname + "/../../.env")) {
-  require("dotenv").config({path: __dirname + "/../../.env"})
+  require("dotenv").config({path: __dirname + "/../../.env"});
 }
 
 const config = {

@@ -1,5 +1,7 @@
 "use strict"
 
+import libxmljs from "libxmljs"
+
 export const NORMAL_WS = "TR_NORMAL_WS"
 export const NORMAL_WS_WPM = "TR_NORMAL_WS_WPM"
 export const MALL_WS = "TR_MALL_WS"
@@ -9,7 +11,16 @@ export let getTransactionResult = {
 }
 
 export let getTransactionResultResponse = {
-	return: {}//transactionResultOutput
+	return: {
+		accountingDate: '',
+		buyOrder: '',
+		cardDetail: {},
+		detailOutput: {},
+		sessionId: '',
+		transactionDate: '',//dateTime
+		urlRedirection: '',
+		VCI: ''
+	} //transactionResultOutput
 }
 
 export let transactionResultOutput = {
@@ -50,7 +61,21 @@ export let acknowledgeTransactionResponse = {
 }
 
 export let initTransaction = {
-	wsInitTransactionInput: {}
+	wsInitTransactionInput: {
+		wSTransactionType: '',
+		commerceId: '',
+		buyOrder: '',
+		sessionId: '',
+		returnURL: '',
+		finalURL: '',
+		transactionDetails: {
+			sharesAmount: '',
+			sharesNumber: '',
+			amount: 0.0,
+			commerceCode: '',
+			buyOrder: ''
+		} //wsTransactionDetail
+	} //wsInitTransactionInput
 }
 
 export let wsInitTransactionInput = {
@@ -78,7 +103,10 @@ export let wpmDetailInput = {
 }
 
 export let initTransactionResponse = {
-	return: {}//wsInitTransactionOutput
+	return: {
+		token: '',
+		url: ''
+	}//wsInitTransactionOutput
 }
 
 export let wsInitTransactionOutput = {
@@ -87,21 +115,16 @@ export let wsInitTransactionOutput = {
 }
 
 /**
- * Fill the data.
+ * Transform an object to string.
  * 
- * @param  [String]	docname		name of the formats to send
- * @param  [Json]	args 		document with the data to fill
- * @return [Json]
+ * @param  [Object]	obj
+ * @return [String]
  */
-export function fillArgs(docname, args){
-	for (const attr in _formats[docname]) {
-		// console.log(attr + ': ' + _formats[docname][attr])
-		if (_formats[docname].hasOwnProperty(attr)) {
-			if (args.hasOwnProperty(attr)) {
-				_formats[docname][attr] = args[attr]
-			}
-		}
-	}
+export function toString(obj) {
+	return Object.keys(obj).map(x => x + '=' + obj[x]).join(',');
+}
 
-	return _formats[docname]
+export function toObject(xml) {	
+	let xmlDoc = libxmljs.parseXmlString(xml);
+	return xmlDoc.get('//faultcode');	
 }
