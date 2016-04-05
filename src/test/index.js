@@ -20,9 +20,9 @@ describe("fill the objects", () => {
 	it("initransaction object", (done) => {
 		const wp = new WebpayService('initTransaction');
 		let format = wp.getWsdlFormat();		
-		filling objects
+		// filling objects
 		
-		initTransaction
+		// initTransaction
 		format.wsInitTransactionInput.wSTransactionType = wp.getType('NORMAL_WS');
 		format.wsInitTransactionInput.sessionId = "1234";
 		format.wsInitTransactionInput.returnURL = config.returnurl;
@@ -31,7 +31,7 @@ describe("fill the objects", () => {
 		format.wsInitTransactionInput.finalURL = "http://www.test.cl/final";
 		format.wsInitTransactionInput.commerceId = config.commerceid;
 		format.wsInitTransactionInput.buyOrder = "123456789";				
-		transactionDetails
+		// transactionDetails
 		format.wsInitTransactionInput.transactionDetails.amount = 5;
 		format.wsInitTransactionInput.transactionDetails.commerceCode = config.commerceid;
 		format.wsInitTransactionInput.transactionDetails.buyOrder = "100-testing";
@@ -43,8 +43,7 @@ describe("fill the objects", () => {
 			} else {
 				console.log(result);
 			}
-		})
-		
+		})		
 	})
 
 	it("getTransactionResult object", (done) => {
